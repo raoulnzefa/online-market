@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Post } from "../types";
+// import { Post } from "../types";
 
 const state = () => ({
-  posts: {},
+  posts: [],
 });
 
 const getters = {
@@ -11,21 +11,18 @@ const getters = {
   },
 };
 const mutations = {
-  GET_POSTS(state: any, payload: any) {
+  GET_POSTS(state: any, payload: any): void {
     state.posts = payload;
   },
 };
 const actions = {
   async getPost({ commit }: any) {
-    await axios
-      .get<Post>("http://localhost:3000/posts")
+    await axios.get("http://localhost:3000/posts")
       .then((result) => {
-        console.log(result)
+        console.log(result);
         commit("GET_POSTS", result.data)
       })
-      .catch((error) => {
-        console.log(error)
-      });
+      .catch((error) => { console.log(error) });
   },
 };
 
