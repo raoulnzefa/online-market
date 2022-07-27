@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import Cart from "../views/ViewCart.vue";
 
 Vue.use(VueRouter);
 
@@ -13,11 +14,16 @@ const routes: Array<RouteConfig> = [
   {
     path: "/cart",
     name: "Cart",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "cart" */ "../views/ViewCart.vue"),
+    component: Cart,
   },
+  // {
+  //   path: "/cart",
+  //   name: "Cart",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  // component: () => import(/* webpackChunkName: "cart" */ "../views/ViewCart.vue"),
+  // },
 ];
 
 const router = new VueRouter({

@@ -2,24 +2,23 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="12" v-for="i in 10" :key="i">
+        <v-col cols="12" v-for="(cart, index) in addCart" :key="index">
           <v-card class="mx-auto">
-            <v-card-text class="pb-0">
-              <div>Word of the Day</div>
+            <v-card-text>
               <div class="d-flex justify-space-between align-center">
-                <div>
-                  <p class="text-h5 text--primary mb-0">be•nev•o•lent</p>
+                <div class="d-flex justify-start align-center">
+                  <div>
+                    <v-img max-width="96" :src="cart.thumbnailUrl"></v-img>
+                  </div>
+                  <div class="ml-2">{{ cart.title }}</div>
                 </div>
                 <div>
-                  <v-btn icon><v-icon>mdi-close-thick</v-icon></v-btn>
+                  <v-btn @click="removeItem(cart.id)" icon
+                    ><v-icon>mdi-close-thick</v-icon></v-btn
+                  >
                 </div>
               </div>
             </v-card-text>
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">
-                Learn More {{ i }}</v-btn
-              >
-            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
@@ -28,7 +27,21 @@
 </template>
 
 <script>
-export default {};
+import { mapActions, mapGetters } from "vuex";
+export default {
+  created() {
+    this.getCart();
+  },
+  computed: {
+    ...mapGetters("addCart", ["addCart"]),
+  },
+  methods: {
+    ...mapActions("addCart", ["getCart", "deleteCart"]),
+    removeItem(id) {
+      this.deleteCart(id);
+    },
+  },
+};
 </script>
 
 <style></style>

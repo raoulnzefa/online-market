@@ -31,7 +31,12 @@
             </v-list-item>
 
             <v-card-actions>
-              <v-btn style="width: 100%" color="primary" depressed>
+              <v-btn
+                @click="addCarts(getInfo)"
+                style="width: 100%"
+                color="primary"
+                depressed
+              >
                 Add to cart
               </v-btn>
             </v-card-actions>
@@ -45,6 +50,9 @@
 <script lang="ts">
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data: () => ({
+    object: {},
+  }),
   created() {
     this.getPost();
   },
@@ -53,6 +61,18 @@ export default {
   },
   methods: {
     ...mapActions("posts", ["getPost"]),
+    ...mapActions("addCart", ["postCart"]),
+
+    addCarts(getInfo: any) {
+      this.postCart(getInfo);
+    },
   },
 };
 </script>
+<style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+</style>

@@ -6,11 +6,16 @@
       </div>
       <v-spacer></v-spacer>
       <router-link to="/cart">
-        <v-badge bordered color="primary" content="1" overlap
+        <v-badge
+          bordered
+          color="primary"
+          :content="counter"
+          :value="counter"
+          overlap
           ><v-btn color="info">
             cart <v-icon class="ml-2"> mdi-cart-variant </v-icon>
-          </v-btn></v-badge
-        >
+          </v-btn>
+        </v-badge>
       </router-link>
     </v-app-bar>
 
@@ -22,6 +27,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "App",
@@ -29,6 +35,18 @@ export default Vue.extend({
   data: () => ({
     //
   }),
+  created() {
+    this.getCart();
+  },
+  computed: {
+    ...mapGetters("addCart", ["addCart"]),
+    counter() {
+      return this.addCart;
+    },
+  },
+  methods: {
+    ...mapActions("addCart", ["getCart"]),
+  },
 });
 </script>
 

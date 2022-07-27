@@ -17,7 +17,7 @@ const mutations = {
 };
 const actions = {
   async getPost({ commit }: any) {
-    await axios.get("http://localhost:3000/posts")
+    await axios.get("http://localhost:3000/product")
       .then((result) => {
         console.log(result);
         commit("GET_POSTS", result.data)
