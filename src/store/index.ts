@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import posts from "@/store/module/post";
+import product from "@/store/module/product";
 import addCart from "@/store/module/addCart";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    posts, addCart
+    product, addCart
   }
 });

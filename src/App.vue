@@ -41,7 +41,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters("addCart", ["addCart"]),
     counter() {
-      return this.addCart;
+      return this.addCart.length;
     },
   },
   methods: {

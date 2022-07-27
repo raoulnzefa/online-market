@@ -2,25 +2,25 @@ import axios from "axios";
 // import { Post } from "../types";
 
 const state = () => ({
-  posts: [],
+  product: [],
 });
 
 const getters = {
-  posts(state: any) {
-    return state.posts;
+  product(state: any) {
+    return state.product;
   },
 };
 const mutations = {
-  GET_POSTS(state: any, payload: any): void {
-    state.posts = payload;
+  GET_PRODUCTS(state: any, payload: any): void {
+    state.product = payload;
   },
 };
 const actions = {
-  async getPost({ commit }: any) {
+  async getProduct({ commit }: any) {
     await axios.get("http://localhost:3000/product")
       .then((result) => {
         console.log(result);
-        commit("GET_POSTS", result.data)
+        commit("GET_PRODUCTS", result.data)
       })
       .catch((error) => { console.log(error) });
   },

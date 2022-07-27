@@ -2,21 +2,13 @@
   <div>
     <v-container>
       <v-row>
-        <v-col v-if="!posts" cols="12" class="text-center">
-          <v-progress-circular
-            :size="50"
-            color="primary"
-            indeterminate
-          ></v-progress-circular>
-        </v-col>
         <v-col
-          v-else
           class="d-flex"
           cols="12"
           sm="6"
           md="4"
           lg="3"
-          v-for="(getInfo, index) in posts"
+          v-for="(getInfo, index) in product"
           :key="index"
         >
           <v-card class="mx-auto" outlined>
@@ -30,12 +22,15 @@
               </v-list-item-content>
             </v-list-item>
 
+            <div class="px-2">
+              <span>Stock: {{ getInfo.item }}</span>
+            </div>
+
             <v-card-actions>
               <v-btn
                 @click="addCarts(getInfo)"
                 style="width: 100%"
                 color="primary"
-                depressed
               >
                 Add to cart
               </v-btn>
@@ -48,19 +43,21 @@
 </template>
 
 <script lang="ts">
+import product from "@/store/module/product";
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   data: () => ({
     object: {},
   }),
   created() {
-    this.getPost();
+    this.getProduct();
   },
   computed: {
-    ...mapGetters("posts", ["posts"]),
+    ...mapGetters("product", ["product"]),
   },
   methods: {
-    ...mapActions("posts", ["getPost"]),
+    ...mapActions("product", ["getProduct"]),
     ...mapActions("addCart", ["postCart"]),
 
     addCarts(getInfo: any) {

@@ -15,7 +15,7 @@ const mutations = {
     state.addCart = payload
   },
   POST_CART(state: any, payload: any) {
-    state.addCart = payload
+    state.addCart.push(payload)
   },
   DELETE_CART(state: any, id: any) {
     state.addCart = state.addCart.filter((x: any) => x.id != id);
@@ -47,7 +47,7 @@ const actions = {
     await axios.post("http://localhost:3000/addCart", payload)
       .then((result) => {
         console.log(result);
-        commit("POST_CART")
+        commit("POST_CART", payload)
       })
       .catch((err) => {
         console.log(err);
